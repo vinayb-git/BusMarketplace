@@ -3,15 +3,19 @@ from sqlalchemy import text
 
 from app.api.auth import router as auth_router
 from app.database.session import engine
+from app.api.locations import router as locations_router
+from app.api.operators import router as operators_router
 
 
 app = FastAPI(
     title="Bus Marketplace API",
-    description="Backend services for the Bus Marketplace platform.",
     version="1.0.0",
+    description="",
 )
 
 app.include_router(auth_router)
+app.include_router(locations_router)
+app.include_router(operators_router)
 
 
 @app.get("/")
