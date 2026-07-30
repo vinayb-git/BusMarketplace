@@ -1,20 +1,53 @@
+# ============================
+# Environment Variables
+# ============================
+.env
+.env.*
+!.env.example
+
+# ============================
 # Python
+# ============================
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
 
-# Virtual Environment
-.venv/
+# ============================
+# Virtual Environments
+# ============================
 venv/
+.venv/
+deployment-venv/
+env/
 
-# VS Code
+# ============================
+# IDE
+# ============================
 .vscode/
+.idea/
 
-# Environment Variables
-.env
+# ============================
+# Testing
+# ============================
+.pytest_cache/
+.coverage
 
-# macOS
+# ============================
+# OS Files
+# ============================
 .DS_Store
-
-# Windows
 Thumbs.db
+
+# ============================
+# Logs
+# ============================
+*.log
+
+# ============================
+# SQLite
+# ============================
+*.db
+*.sqlite3
+*.zip
+requirements-full.txt

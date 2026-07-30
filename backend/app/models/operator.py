@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 import enum
 from datetime import datetime, timezone
 
@@ -17,6 +18,8 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.session import Base
 
+if TYPE_CHECKING:
+    from app.models.bus import Bus
 
 class OperatorStatus(str, enum.Enum):
     PENDING = "pending"
@@ -111,6 +114,11 @@ class Operator(Base):
     bank_accounts: Mapped[list["OperatorBankAccount"]] = relationship(
         back_populates="operator",
         cascade="all, delete-orphan",
+    )
+
+    buses: Mapped[list["Bus"]] = relationship(
+    back_populates="operator",
+    cascade="all, delete-orphan",
     )
 
 

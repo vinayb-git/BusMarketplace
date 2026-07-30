@@ -15,6 +15,14 @@ from app.models.operator import (
     OperatorStatus,
 )
 
+from app.models.bus import (
+    Bus,
+    BusStatus,
+    BusType,
+    FuelType,
+    ServiceType,
+)
+
 __all__ = [
     "User",
     "UserRole",
@@ -28,4 +36,9 @@ __all__ = [
     "OperatorStatus",
     "OperatorContact",
     "OperatorBankAccount",
+    "Bus",
+    "BusType",
+    "ServiceType",
+    "FuelType",
+    "BusStatus",
 ]
