@@ -20,6 +20,7 @@ from app.database.session import Base
 
 if TYPE_CHECKING:
     from app.models.bus import Bus
+    from app.models.driver import Driver
 
 class OperatorStatus(str, enum.Enum):
     PENDING = "pending"
@@ -121,6 +122,12 @@ class Operator(Base):
     cascade="all, delete-orphan",
     )
 
+    drivers = relationship(
+    "Driver",
+    back_populates="operator",
+    cascade="all, delete-orphan",
+    )
+
 
 class OperatorContact(Base):
     __tablename__ = "operator_contacts"
@@ -198,3 +205,4 @@ class OperatorBankAccount(Base):
     operator: Mapped["Operator"] = relationship(
         back_populates="bank_accounts",
     )
+

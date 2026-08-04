@@ -20,6 +20,15 @@ from app.services.bus_service import (
     modify_bus,
     remove_bus,
 )
+from app.schemas.master import (
+    BusAmenityAssignment,
+    MasterDataResponse,
+)
+from app.services.amenity_service import (
+    assign_bus_amenities,
+    get_bus_amenities,
+    remove_bus_amenity,
+)
 
 router = APIRouter(
     prefix="/buses",
@@ -172,4 +181,45 @@ def deactivate_existing_bus(
     return remove_bus(
         db,
         bus=bus,
+    )
+@router.get(
+    "/{bus_id}/amenities",
+    response_model=list[MasterDataResponse],
+)
+def get_bus_amenities_endpoint(
+    bus_id: int,
+    db: Session = Depends(get_db),
+):
+    return get_bus_amenities(db, bus_id)
+
+
+@router.put(
+    "/{bus_id}/amenities",
+    response_model=list[MasterDataResponse],
+)
+def assign_bus_amenities_endpoint(
+    bus_id: int,
+    payload: BusAmenityAssignment,
+    db: Session = Depends(get_db),
+):
+    return assign_bus_amenities(
+        db,
+        bus_id,
+        payload.amenity_ids,
+    )
+
+
+@router.delete(
+    "/{bus_id}/amenities/{amenity_id}",
+    response_model=list[MasterDataResponse],
+)
+def remove_bus_amenity_endpoint(
+    bus_id: int,
+    amenity_id: int,
+    db: Session = Depends(get_db),
+):
+    return remove_bus_amenity(
+        db,
+        bus_id,
+        amenity_id,
     )

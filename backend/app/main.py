@@ -7,6 +7,9 @@ from app.api.locations import router as locations_router
 from app.api.operators import router as operators_router
 from app.api.buses import router as buses_router
 from app.database.session import engine
+from app.api.master import router as master_router
+from app.api.seat_layout import router as seat_layout_router
+from app.api.drivers import router as drivers_router
 
 
 app = FastAPI(
@@ -22,6 +25,9 @@ app.include_router(auth_router)
 app.include_router(locations_router)
 app.include_router(operators_router)
 app.include_router(buses_router)
+app.include_router(master_router)
+app.include_router(seat_layout_router)
+app.include_router(drivers_router)
 
 
 @app.get("/", tags=["System"])
